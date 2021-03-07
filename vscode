@@ -1,0 +1,37 @@
+version: "3.3"
+
+networks:
+  traefik-public:
+    external: true
+
+services:
+
+  vscode:
+    image: ghcr.io/linuxserver/code-server
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 10
+        window: 15s
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.vscode-http.rule=Host(`vscode.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.vscode-http.entrypoints=http
+        - traefik.http.routers.vscode-http.middlewares=https-redirect
+        - traefik.http.routers.vscode-https.rule=Host(`vscode.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.vscode-https.entrypoints=https
+        - traefik.http.routers.vscode-https.tls=true
+        - traefik.http.routers.vscode-https.tls.certresolver=le
+        - traefik.http.services.vscode.loadbalancer.server.port=8443
+        - traefik.http.middlewares.vscode-auth.basicauth.users=${ADMIN_USER?Variable not set}:${HASHED_PASSWORD?Variable not set}
+        - traefik.http.routers.vscode-https.middlewares=vscode-auth        
+     
+    environment:
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - traefik-public
