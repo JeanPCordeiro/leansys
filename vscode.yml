@@ -31,5 +31,7 @@ services:
       - PUID=1000
       - PGID=1000
       - HASHED_PASSWORD=dedafc68da3f3de7cefefa59820db80a235d15636ee294d3903498cc01b9b035
+    volumes:
+      - /home/jpierre:/config/workspace      
     networks:
       - traefik-public
