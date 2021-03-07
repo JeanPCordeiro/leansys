@@ -26,9 +26,7 @@ services:
         - traefik.http.routers.vscode-https.entrypoints=https
         - traefik.http.routers.vscode-https.tls=true
         - traefik.http.routers.vscode-https.tls.certresolver=le
-        - traefik.http.services.vscode.loadbalancer.server.port=8443
-        - traefik.http.middlewares.vscode-auth.basicauth.users=${ADMIN_USER?Variable not set}:${HASHED_PASSWORD?Variable not set}
-        - traefik.http.routers.vscode-https.middlewares=vscode-auth        
+        - traefik.http.services.vscode.loadbalancer.server.port=8443   
      
     environment:
       - PUID=1000
