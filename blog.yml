@@ -1,0 +1,72 @@
+version: "3.3"
+
+networks:
+  nw-backend:
+    driver: overlay
+    attachable: true
+  traefik-public:
+    external: true
+
+volumes:
+    mysql_data: {}
+    wp_data: {}
+
+services:
+
+  mysql:
+    image: mariadb:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 15s
+    environment:
+        MYSQL_DATABASE: wordpress
+        MYSQL_USER: wordpress
+        MYSQL_PASSWORD: wordpress
+        MYSQL_ROOT_PASSWORD: wordpressroot
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - nw-backend
+
+  wordpress:
+    image: wordpress:latest
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 5s
+        order: start-first
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 10
+        window: 15s
+      labels:
+        - "traefik.enable=true"
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.blog-http.rule=Host(`blog.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.blog-http.entrypoints=http
+        - traefik.http.routers.blog-http.middlewares=https-redirect
+        - traefik.http.routers.blog-https.rule=Host(`blog.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.blog-https.entrypoints=https
+        - traefik.http.routers.blog-https.tls=true
+        - traefik.http.routers.blog-https.tls.certresolver=le
+        - traefik.http.services.blog.loadbalancer.server.port=80
+    environment:
+        WORDPRESS_DB_HOST: mysql
+        WORDPRESS_DB_USER: wordpress
+        WORDPRESS_DB_PASSWORD: wordpress
+        WORDPRESS_DB_NAME: wordpress
+        WORDPRESS_TABLE_PREFIX: wp_
+    depends_on:
+      - mysql
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - nw-backend
+      - traefik-public
