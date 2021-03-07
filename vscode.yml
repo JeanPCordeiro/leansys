@@ -27,9 +27,9 @@ services:
         - traefik.http.routers.vscode-https.tls=true
         - traefik.http.routers.vscode-https.tls.certresolver=le
         - traefik.http.services.vscode.loadbalancer.server.port=8443   
-     
     environment:
       - PUID=1000
       - PGID=1000
+      - HASHED_PASSWORD=dedafc68da3f3de7cefefa59820db80a235d15636ee294d3903498cc01b9b035
     networks:
       - traefik-public
