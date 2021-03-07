@@ -45,14 +45,14 @@ services:
         - "traefik.enable=true"
         - traefik.docker.network=traefik-public
         - traefik.constraint-label=traefik-public
-        - traefik.http.routers.blog-http.rule=Host(`blog.${DOMAIN?Variable not set}`)
-        - traefik.http.routers.blog-http.entrypoints=http
-        - traefik.http.routers.blog-http.middlewares=https-redirect
-        - traefik.http.routers.blog-https.rule=Host(`blog.${DOMAIN?Variable not set}`)
-        - traefik.http.routers.blog-https.entrypoints=https
-        - traefik.http.routers.blog-https.tls=true
-        - traefik.http.routers.blog-https.tls.certresolver=le
-        - traefik.http.services.blog.loadbalancer.server.port=80
+        - traefik.http.routers.techblog-http.rule=Host(`techblog.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.techblog-http.entrypoints=http
+        - traefik.http.routers.techblog-http.middlewares=https-redirect
+        - traefik.http.routers.techblog-https.rule=Host(`techblog.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.techblog-https.entrypoints=https
+        - traefik.http.routers.techblog-https.tls=true
+        - traefik.http.routers.techblog-https.tls.certresolver=le
+        - traefik.http.services.techblog.loadbalancer.server.port=80
     environment:
         WORDPRESS_DB_HOST: mysql
         WORDPRESS_DB_USER: wordpress
