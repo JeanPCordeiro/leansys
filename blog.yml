@@ -36,10 +36,6 @@ services:
     image: wordpress:latest
     deploy:
       replicas: 1
-      update_config:
-        parallelism: 1
-        delay: 5s
-        order: start-first
       restart_policy:
         condition: any
         delay: 10s
