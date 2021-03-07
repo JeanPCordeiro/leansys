@@ -6,7 +6,7 @@ export EMAIL=jeanpierre.cordeiro@gmail.com
 export DOMAIN=traefik.sys.hostby.link
 export USERNAME=admin
 export HASHED_PASSWORD=$(openssl passwd -apr1)
-curl -L dockerswarm.rocks/traefik-host.yml -o traefik-host.yml
+#curl -L dockerswarm.rocks/traefik-host.yml -o traefik-host.yml
 docker stack deploy -c traefik-host.yml traefik
 docker stack ps traefik
 docker service logs traefik_traefik
