@@ -1,0 +1,36 @@
+version: "3.3"
+
+networks:
+  traefik-public:
+    external: true
+
+services:
+
+  scope:
+    image: weaveworks/scope:1.13.1
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: any
+        delay: 10s
+        max_attempts: 10
+        window: 15s
+      labels:
+        - "works.weave.role=system"
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.scope-http.rule=Host(`scope.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.scope-http.entrypoints=http
+        - traefik.http.routers.scope-http.middlewares=https-redirect
+        - traefik.http.routers.scope-https.rule=Host(`scope.${DOMAIN?Variable not set}`)
+        - traefik.http.routers.scope-https.entrypoints=https
+        - traefik.http.routers.scope-https.tls=true
+        - traefik.http.routers.scope-https.tls.certresolver=le
+        - traefik.http.services.scope.loadbalancer.server.port=4040   
+    command:
+      - "--probe.docker=true"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"    
+    networks:
+      - traefik-public
