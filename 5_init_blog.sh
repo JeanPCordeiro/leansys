@@ -1,4 +1,4 @@
 #!/bin/bash
-export DOMAIN=sys.hostby.link
+export DOMAIN=hostby.link
 docker stack deploy -c blog.yml blog
 docker stack ps blog
