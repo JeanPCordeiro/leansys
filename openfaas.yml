@@ -1,0 +1,155 @@
+version: '3.8'
+services:
+  gateway:
+    image: 'openfaas/gateway:0.18.18'
+    networks:
+      - functions
+      - traefik-public
+    environment:
+      functions_provider_url: 'http://faas-swarm:8080/'
+      read_timeout: 5m5s
+      write_timeout: 5m5s
+      upstream_timeout: 5m
+      dnsrr: 'true'
+      faas_nats_address: nats
+      faas_nats_port: 4222
+      direct_functions: 'true'
+      direct_functions_suffix: ''
+      basic_auth: '${BASIC_AUTH:-false}'
+      #secret_mount_path: /run/secrets/
+      scale_from_zero: 'true'
+      max_idle_conns: 1024
+      max_idle_conns_per_host: 1024
+      auth_proxy_url: '${AUTH_URL:-}'
+      auth_proxy_pass_body: 'false'
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.docker.network=traefik-public
+        - traefik.constraint-label=traefik-public
+        - traefik.http.routers.gateway.entrypoints=https
+        - >-
+          traefik.http.routers.gateway.rule=Host(`${FAAS_DOMAIN?Variable not
+          defined}`)          
+        - traefik.http.routers.gateway.tls.certresolver=le
+        - traefik.http.services.gateway.loadbalancer.server.port=8080
+      resources:
+        reservations:
+          memory: 100M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 20
+        window: 380s
+      placement:
+        constraints:
+          - node.platform.os == linux
+    #secrets:
+     # - basic-auth-user
+     # - basic-auth-password
+  basic-auth-plugin:
+    image: 'openfaas/basic-auth-plugin:0.18.18'
+    networks:
+      - functions
+    environment:
+      secret_mount_path: /run/secrets/
+      user_filename: basic-auth-user
+      pass_filename: basic-auth-password
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+          - node.platform.os == linux
+      resources:
+        reservations:
+          memory: 50M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 20
+        window: 380s
+    #secrets:
+    #  - basic-auth-user
+    #  - basic-auth-password
+  faas-swarm:
+    volumes:
+      - '/var/run/docker.sock:/var/run/docker.sock:ro'
+    image: 'openfaas/faas-swarm:0.9.0'
+    networks:
+      - functions
+    environment:
+      read_timeout: 5m5s
+      write_timeout: 5m5s
+      DOCKER_API_VERSION: '1.30'
+      basic_auth: '${BASIC_AUTH:-false}'
+      #secret_mount_path: /run/secrets/
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+          - node.platform.os == linux
+      resources:
+        reservations:
+          memory: 100M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 20
+        window: 380s
+    #secrets:
+     # - basic-auth-user
+      #- basic-auth-password
+  nats:
+    image: 'nats-streaming:0.17.0'
+    command: '--store memory --cluster_id faas-cluster'
+    networks:
+      - functions
+    deploy:
+      resources:
+        limits:
+          memory: 125M
+        reservations:
+          memory: 50M
+      placement:
+        constraints:
+          - node.platform.os == linux
+  queue-worker:
+    image: 'openfaas/queue-worker:0.11.2'
+    networks:
+      - functions
+    environment:
+      max_inflight: '1'
+      ack_wait: 5m5s
+      basic_auth: '${BASIC_AUTH:-false}'
+      #secret_mount_path: /run/secrets/
+      gateway_invoke: 'true'
+      faas_gateway_address: gateway
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+        reservations:
+          memory: 20M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 20
+        window: 380s
+      placement:
+        constraints:
+          - node.platform.os == linux
+    #secrets:
+     # - basic-auth-user
+     # - basic-auth-password
+
+networks:
+  traefik-public:
+    external: true
+  functions:
+    driver: overlay
+    attachable: true
+#secrets:
+ # basic-auth-user:
+  #  external: true
+  #basic-auth-password:
+  #  external: true
