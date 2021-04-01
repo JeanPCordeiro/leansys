@@ -1,0 +1,66 @@
+version: "3.8"
+
+volumes:
+    db_data: {}
+
+services:
+
+  db:
+    image: mariadb:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 15s
+    environment:
+        MYSQL_DATABASE: ${DATABASE}
+        MYSQL_USER: ${DBUSER}
+        MYSQL_PASSWORD: ${DBPWD}
+        MYSQL_ROOT_PASSWORD: ${DBROOTPWD}
+    volumes:
+      - db_data:/var/lib/mysql
+      
+  get:
+    image: jpcordeiro/node-boiler-get:latest
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 15s
+    environment:
+        TPLINK_USER: ${TPLINK_USER}
+        TPLINK_PASS: ${TPLINK_PASS}
+        TPLINK_DEVICE: ${TPLINK_DEVICE}
+        DBHOST: db
+        DBPORT: 3306
+        DBUSER: ${DBUSER}
+        DBPWD: ${DBPWD}
+        DATABASE: ${DATABASE}
+        TABLE: ${TABLE}
+        POWER_LOW: ${POWER_LOW}
+        POWER_HIGH: ${POWER_HIGH}
+        LITERS_HOUR: ${LITERS_HOUR}
+
+  calc:
+    image: jpcordeiro/node-boiler-calc:latest
+    deploy:
+      labels:
+        - "swarm.cronjob.enable=true"
+        - "swarm.cronjob.schedule=0 1 * * *"
+        - "swarm.cronjob.skip-running=true"
+      replicas: 0
+      restart_policy:
+        condition: none
+    environment:
+        DBHOST: db
+        DBPORT: 3306
+        DBUSER: ${DBUSER}
+        DBPWD: ${DBPWD}
+        DATABASE: ${DATABASE}
+        TABLE: ${TABLE}
+        LITERS_HOUR: ${LITERS_HOUR}
+       

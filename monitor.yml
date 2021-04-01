@@ -13,31 +13,12 @@ volumes:
     alertmanager: {}
 
 configs:
-  dockerd_config:
-    file: ./dockerd-exporter/Caddyfile
   node_rules:
     file: ./prometheus/rules/swarm_node.rules.yml
   task_rules:
     file: ./prometheus/rules/swarm_task.rules.yml
 
 services:
-  dockerd-exporter:
-    image: stefanprodan/caddy
-    networks:
-      - net
-    environment:
-      - DOCKER_GWBRIDGE_IP=172.18.0.1
-    configs:
-      - source: dockerd_config
-        target: /etc/caddy/Caddyfile
-    deploy:
-      mode: global
-      resources:
-        limits:
-          memory: 128M
-        reservations:
-          memory: 64M
-
   cadvisor:
     image: google/cadvisor
     networks:
