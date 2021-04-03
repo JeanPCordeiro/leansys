@@ -94,6 +94,10 @@ volumes:
   # Traefik is always deployed to the same Docker node with the same volume containing
   # the HTTPS certificates
   traefik-public-certificates:
+          driver: linstor
+          driver_opts:
+                  fs: "xfs"
+                  size: "4G"
 
 networks:
   # Use the previously created public network "traefik-public", shared with other

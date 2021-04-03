@@ -27,6 +27,7 @@ if [ "$SERVER" = vmi536198  ]; then
   linstor node create vmi522170.contaboserver.net 161.97.92.57
   linstor node list
 fi
+cp linstor-client.conf /etc/linstor/linstor-client.conf
 
 #
 # Create LINSTOR Storage
@@ -48,5 +49,5 @@ cp docker-volume.conf /etc/linstor/docker-volume.conf
 #
 if [ "$SERVER" = vmi536198  ]; then
    docker volume create -d linstor --opt fs=xfs --opt size=2G testvol 
+   docker run -it --rm --name=cont -v testvol:/data --volume-driver=linstor busybox ps aux
 fi
-docker run -it --rm --name=cont -v testvol:/data --volume-driver=linstor busybox ps aux

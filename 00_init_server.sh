@@ -39,4 +39,4 @@ add-apt-repository -y ppa:linbit/linbit-drbd9-stack
 apt-get update -y
 apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client linstor-controller
 apt install xfsprogs -y
-cp linstor-client.conf /etc/linstor/linstor-client.conf
+#cp linstor-client.conf /etc/linstor/linstor-client.conf

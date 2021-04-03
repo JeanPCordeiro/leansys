@@ -50,3 +50,8 @@ networks:
 
 volumes:
   portainer-data:
+          driver: linstor
+          driver_opts:
+                  fs: "xfs"
+                  size: "4G"
+
