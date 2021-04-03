@@ -38,8 +38,5 @@ apt install xfsprogs -y
 add-apt-repository -y ppa:linbit/linbit-drbd9-stack
 apt-get update -y
 apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client linstor-controller
-<<<<<<< HEAD
 apt install xfsprogs -y
-=======
->>>>>>> 71d72d80cdef98cab129db9836b4b00c8219bd42
 cp linstor-client.conf /etc/linstor/linstor-client.conf
