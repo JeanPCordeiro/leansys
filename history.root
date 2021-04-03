@@ -1,0 +1,44 @@
+    1  adduser onebuck
+    2  usermod -aG sudo onebuck
+
+    4  vi /etc/iptables.conf 
+    5  iptables-restore -n /etc/iptables.conf 
+    6  vi /etc/systemd/system/iptables.service
+    7  systemctl enable --now iptables
+  135  lsof -i -P -n | grep LISTEN
+  126  apt install net-tools
+  143  apt install iftop
+
+   21  add-apt-repository -y ppa:linbit/linbit-drbd9-stack 
+       apt-get update
+       apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client
+   29  sudo reboot
+
+   43  systemctl enable --now  linstor-controller
+   44  systemctl enable --now  linstor-satellite
+   45  systemctl status linstor-controller
+   46  systemctl status linstor-satellite
+
+   30  fallocate -l 150G /disk150G.img 
+   31  losetup -fP /disk150G.img
+   32  losetup -a
+
+   50  linstor node create vmi536198.contaboserver.net 161.97.170.117 --node-type Combined
+   51  linstor node create vmi522170.contaboserver.net 161.97.92.57
+   52  linstor node list
+
+
+linstor physical-storage create-device-pool --pool-name disk150G LVMTHIN vmi536198.contaboserver.net /dev/loop0
+linstor physical-storage create-device-pool --pool-name disk150G LVMTHIN vmi522170.contaboserver.net /dev/loop0
+
+   63  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd linstor_disk150G
+   64  linstor storage-pool create lvm vmi522170.contaboserver.net pool_ssd linstor_disk150G
+
+   80  linstor resource-group create my_ssd_group --storage-pool pool_ssd --place-count 2
+   81  linstor volume-group create my_ssd_group
+   82  linstor resource-group spawn-resources my_ssd_group my_ssd_res 20G
+   98  linstor resource-group my_ssd_group
+
+  188  docker plugin install linbit/linstor-docker-volume --alias linstor
+vi /etc/linstor/docker-volume.conf
+  190  docker volume create -d linstor              --opt fs=xfs --opt size=200 newvol

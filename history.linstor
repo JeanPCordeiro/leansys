@@ -1,0 +1,145 @@
+   21  add-apt-repository -y ppa:linbit/linbit-drbd9-stack; apt-get update; apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client
+   35  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd vg_ssd
+   36  linstor storage-pool list
+   37  linstor n l
+   38  linstor
+   39  systemctl disable --now  linstor-controller
+   40  systemctl disable --now  linstor-satellite
+   41  systemctl status linstor-satellite
+   42  systemctl status linstor-controller
+   43  systemctl enable --now  linstor-controller
+   44  systemctl enable --now  linstor-satellite
+   45  systemctl status linstor-controller
+   46  systemctl status linstor-satellite
+   50  linstor node create vmi536198.contaboserver.net 161.97.170.117 --node-type Combined
+   51  linstor node create vmi522170.contaboserver.net 161.97.92.57
+   52  linstor node list
+   54  linstor create-storage-pool-defintion
+   55  linstor create-storage-pool-definition
+   56  linstor create-storage-pool-definition drbdpool
+   57  linstor create-storage-pool-definition --help
+   58  linstor create-storage-pool-definition 
+   59  linstor
+   60  linstor -v
+   61  linstor create-storage-pool-definitions drbdpool
+   63  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd vg_ssd
+   64  linstor storage-pool create lvm vmi522170.contaboserver.net pool_ssd vg_ssd
+   65  linstor list-storage-pools
+   66  linstor s l
+   67  linstor storage-pool list
+   68  linstor sp l
+   69  linstor physical-storage list
+   74  linstor physical-storage list
+   75  linstor storage-pool list
+   76  linstor physical-storage list
+   77  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN
+   78  linstor physical-storage create-device-pool --pool-name pool_ssd LVMTHIN
+   79  linstor physical-storage create-device-pool --pool-name 
+   80  linstor resource-group create my_ssd_group --storage-pool pool_ssd --place-count 2
+   81  linstor volume-group create my_ssd_group
+   82  linstor resource-group spawn-resources my_ssd_group my_ssd_res 20G
+   83  linstor resource-group list
+   84  linstor resource-group spawn-resources list
+   85  linstor node list
+   86  systemctl status linstor.satellite
+   87  systemctl status linstor.controller
+   89  systemctl status linstor.satellite
+   91  systemctl status linstor.controller
+   93  systemctl status | grep linstor
+   94  systemctl status linstor-controller
+   95  systemctl status linstor-satellite
+   96  linstor resource-group spawn-resources my_ssd_group my_ssd_res 20G
+   97  linstor resource-group list
+   98  linstor resource-group my_ssd_group
+   99  linstor resource-group list-properties my_ssd_group
+  100  linstor resource-group list-properties
+  103  for i in {00..09}; do linstor create-resource-definition r$i; linstor create-volume-definition r$i 2Gib; for n in vmi536198 vmi522170; do linstor create-resource -s ; ;
+  104  linstor list-resources
+  105  linstor resource list
+  112  linstor resource list
+  114  linstor node list
+  115  linstor resource list
+  116  cat /etc/drbd.d/linstor-resources.res 
+  120  cat /etc/drbd.d/linstor-resources.res 
+  121  cat /var/lib/linstor.d/linstor_common.conf 
+  122  cat /var/lib/linstor.d/my_ssd_res.res 
+  131  linstor resource list
+  138  linstor resource list
+  145  linstor resource list
+  147  linstor resource list
+  159  docker plugin install linbit/linstor-docker-volume
+  160  cat /etc/linstor/linstor.toml
+  161  vi /etc/linstor/docker-volume.conf
+  162  docker volume create -d linstor              --opt fs=xfs --opt size=200 lsvol
+  166  cat /etc/linstor/docker-volume.conf
+  168  docker volume create -d linstor              --opt fs=xfs --opt size=200 lsvol
+  176  docker plugin install lade/linstor
+  178  docker volume create -d linstor              --opt fs=xfs --opt size=200 lsvol
+  179  docker volume create -d lade/linstor              --opt fs=xfs --opt size=200 lsvol
+  182  history | grep linstor
+  184  docker plugin install linbit/linstor-docker-volume
+  188  docker plugin install linbit/linstor-docker-volume --alias linstor
+  190  docker volume create -d linstor              --opt fs=xfs --opt size=200 newvol
+  191  history | grep linstor
+  192  linstor node list
+  193  linstor resource list
+  194  cat /etc/drbd.d/linstor-resources.res 
+  195  cat /var/lib/linstor.d/newvol.res 
+  196  cat /var/lib/linstor.d/lsvol.res 
+  197  cat /var/lib/linstor.d/my_ssd_res.res 
+  200  linstor resource list
+  201  docker volume create -d linstor              --opt fs=xfs --opt size=200 vol1
+  202  linstor resource list
+  207  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN 
+  208  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi536198.contaboserver.net /dev/loop0
+  213  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi536198.contaboserver.net /dev/loop0
+  215  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi536198.contaboserver.net /dev/loop1
+  216  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi522170.contaboserver.net /dev/loop1
+  218  linstor ps l
+  219  linstor sp l
+  221  linstor 
+  226  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi522170.contaboserver.net /dev/loop2
+  227  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi536198.contaboserver.net /dev/loop2
+  231  linstor ps l
+  232  linstor sp l
+  233  linstor resource-group create disk20G --storage-pool disk20G
+  234  linstor volume-group create disk20G
+  235  linstor resource-group spawn-resources disk20G disk20G  20G
+  236  linstor resource-group create disk20G --storage-pool disk20G --place-count 2
+  237  linstor resource-group delete disk20G
+  238  linstor resource-group create disk20G --storage-pool disk20G --place-count 2
+  239  linstor resource-group spawn-resources disk20G disk20G  20G
+  242  linstor vg l
+  243  linstor vg list
+  244  linstor
+  245  linstor v l
+  247  linstor sp l
+  248  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi536198.contaboserver.net /dev/loop2
+  250  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi536198.contaboserver.net /dev/loop2
+  251  linstor storage-pool create lvm vmi536198.contaboserver.net pool2_ssd disk20G
+  253  linstor storage-pool create lvm vmi536198.contaboserver.net pool2_ssd linstor_disk20G
+  254  linstor storage-pool create lvm vmi536198.contaboserver.net pool3_ssd linstor_disk20G
+  255  linstor sp l
+  257  linstor storage-pool create lvm vmi522170.contaboserver.net pool3_ssd linstor_disk20G
+  258  linstor sp l
+  260  linstor rg l
+  261  linstor r l
+  262  docker volume create -d linstor              --opt fs=xfs --opt size=400 vol400
+  263  linstor r l
+  264  hisotry | grep linstor
+  265  history | grep linstor
+  266  linstor v l
+  267  linstor sp l
+  269  cat /etc/linstor/docker-volume.conf
+  270  vi /etc/linstor/docker-volume.conf
+  271  linstor sp l
+  272  vi /etc/linstor/docker-volume.conf
+  273  docker volume create -d linstor               --opt size=200 testvol
+  274  linstor sp l
+  277  history | grep linstor
+  278  linstor sp l
+  279  linstor g l
+  280  linstor rg l
+  281  linstor vg l
+  282  linstor v l
+  283  history | grep linstor > history.linstor

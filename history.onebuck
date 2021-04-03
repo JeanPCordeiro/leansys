@@ -1,0 +1,159 @@
+    1  git clone https://github.com/JeanPCordeiro/swarm.git
+    2  sudo apt install git
+    3  git clone https://github.com/JeanPCordeiro/swarm.git
+    4  cd swarm/
+    5  ls
+    6  vi 0_init_docker.sh 
+    7  ./0_init_docker.sh 
+    8  cat 0_init_docker.sh 
+    9  ./0_init_docker.sh 
+   10  vi 0_init_docker.sh 
+   11  git add .
+   12  git commit -m "docker ubuntu"
+   13  git config --global 
+   14  git config --global user.email "jeanpierre.cordeiro@gmail.com"
+   15  git config --global user.name "JeanPCordeiro"
+   16  git commit -m "docker ubuntu"
+   17  git push
+   18  reboot
+   19  sudo reboot
+   20  cd swarm
+   21  ./0_init_docker.sh 
+   22  docker info
+   23  su -s onebuck
+   24  exit
+   25  ufw 
+   26  iptables
+   27  sudo iptables-save
+   28  ip addr
+   29  sudo vi *filter
+   30  sudo vi /etc/iptables.conf
+   31  sudo iptables-restore -n /etc/iptables.conf
+   32  sudo iptables-restore -n /etc/iptables.conf  
+   33  sudo vi /etc/iptables.conf
+   34  sudo -
+   35  sudo -s
+   36  cd swarm/
+   37  ls
+   38  cat init_swarm
+   39  cat 1_init_swarm.sh 
+   40  iptables-save 
+   41  sudo iptables-save > ../ip-avant-swarm
+   42  ./1_init_swarm.sh 
+   43  sudo iptables-save > ../ip-apres-swarm
+   44  cd ..
+   45  ls
+   46  ls -l
+   47  cat ip-apres-swarm 
+   48  sudo iptables-L
+   49  sudo iptables -L
+   50  sudo vi /etc/iptables.conf 
+   51  sudo reboot
+   52  sudo iptables -L
+   53  docker node ls
+   54  sudo -
+   55  sudo -s
+   56  history
+   57  sudo vi /etc/iptables.conf 
+   58  sudo -s
+   59  cd swarm
+   60  ls
+   61  docker node ls
+   62  docker swarm join-token manager
+   63  docker node ls
+   64  sudo vi /etc/iptables.conf 
+   65  sudo iptables -L
+   66  sudo iptables-restore -n /etc/iptables.conf
+   67  sudo iptables -L
+   68  docker node ls
+   69  sudo vi /etc/iptables.conf 
+   70  sudo iptables-restore -n /etc/iptables.conf
+   71  docker node ls
+   72  docker ps
+   73  ./2_init_traefik.sh 
+   74  docker ps
+   75  docker logs 25f
+   76  cat traefik-host.yml 
+   77  cat 2_init_traefik.sh 
+   78  vi traefik-host.yml 
+   79  vi 2_init_traefik.sh 
+   80  docker stack rm traefik
+   81  docker network rm traefik-public
+   82  ./2_init_traefik.sh 
+   83  docker ps
+   84  cat 3_init_portainer.sh 
+   85  docker volume
+   86  docker volume ls
+   87  vi traefik-host.yml 
+   88  sudo -
+   89  sudo -s
+   90  curl -O 'https://my.linbit.com/linbit-manage-node.py'
+   91  chmod u+x linbit-manage-node.py
+   92  ./linbit-manage-node.py
+   93  add-apt-repository -y ppa:linbit/linbit-drbd9-stack; apt-get update; apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client
+   94  sudo -s
+   95  sudo systemctl enable --now linstor-controller
+   96  add-apt-repository -y ppa:linbit/linbit-drbd9-stack; apt-get update; apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client
+   97  sudo apt install -y drbd-dkms drbd-utils lvm2
+   98  sudo apt install linstor-controller linstor-satellite  linstor-client
+   99  sudo systemctl enable --now linstor-controller
+  100  sudo  systemctl start linstor-controller
+  101  sudo  systemctl status linstor-controller
+  102  sudo vi /etc/iptables.conf 
+  103  history
+  104  sudo iptables-restore -n /etc/iptables.conf
+  105  sudo linstor node list
+  106  sudo linstor node create vmi536198 vmi536198.contaboserver.net
+  107  ip addr
+  108  sudo linstor node create vmi536198 161.97.170.117
+  109  sudo linstor node list
+  110  sudo linstor node 
+  111  sudo linstor node delete vmi536198
+  112  sudo linstor node 
+  113  sudo linstor node list
+  114  sudo linstor node create vmi536198.contaboserver.net 161.97.170.117
+  115  sudo linstor node list
+  116  sudo linstor node create vmi536198.contaboserver.net 161.97.170.117
+  117  sudo vi /etc/iptables.conf 
+  118  sudo iptables-restore -n /etc/iptables.conf
+  119  sudo linstor node list
+  120  sudo linstor node delete vmi536198
+  121  sudo linstor node delete vmi536198.contaboserver.net
+  122  sudo linstor node list
+  123  sudo linstor node create vmi536198.contaboserver.net 161.97.170.117 --node-type Combined
+  124  sudo linstor node list
+  125  sudo linstor node create vmi522170.contaboserver.net 161.97.92.57 --node-type Combined
+  126  sudo linstor node list
+  127  sudo  systemctl status linstor-controller
+  128  date
+  129  ls /var/log/linstor-controller/linstor-Controller.log 
+  130  cat /var/log/linstor-controller/linstor-Controller.log 
+  131  sudo cat /var/log/linstor-controller/linstor-Controller.log 
+  132  sudo linstor node list
+  133  linstor storage-pool-definition create drbdpool
+  134  sudo linstor storage-pool-definition create drbdpool
+  135  sudo vgcreate
+  136  sudo lvcreate -v -L 100m -T centos/mythinpool
+  137  sudo lvs
+  138  lvg
+  139  sudo vg
+  140  sudo lvcreate -v -L 100m -T centos/mythinpool
+  141  sudo vgdisplay
+  142  sudo vgdisplay *
+  143  pvdisplay
+  144  sudo pvdisplay
+  145  lbm
+  146  lvm
+  147  sudo lvm --help
+  148  sudo lvm vgs
+  149  sudo linstor storage-pool-definition create drbdpool
+  150  sudo cat /proc/drbd
+  151  sudo losetup -fP
+  152  sudo losetup 
+  153  sudo losetup --help
+  154  sudo losetup -a
+  155  sudo -s
+  156  hisotry
+  157  history
+  158  sudo -s
+  159  history > /home/onebuck/swarm/history.onebuck

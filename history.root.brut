@@ -1,0 +1,313 @@
+    1  adduser onebuck
+    2  usermod -aG sudo onebuck
+    3  iptables-restore -n /etc/iptables.conf 
+    4  vi /etc/iptables.conf 
+    5  iptables-restore -n /etc/iptables.conf 
+    6  vi /etc/systemd/system/iptables.service
+    7  systemctl enable --now iptables
+    8  systemctl status iptables
+    9  iptables -L
+   10  vi /etc/iptables.conf 
+   11  ip addr
+   12  vi /etc/iptables.conf 
+   13  iptables-restore -n /etc/iptables.conf
+   14  iptables -L
+   15  cd
+   16  history
+   17  vi /etc/systemd/system/iptables.service
+   18  history
+   19  systemctl status iptable
+   20  apt install -y drbd-dkms drbd-utils lvm2
+   21  add-apt-repository -y ppa:linbit/linbit-drbd9-stack; apt-get update; apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client
+   22  modprobe
+   23  lsprobe
+   24  lsmode
+   25  lsmod
+   26  lsmod | grep dr
+   27  modprobe drbd
+   28  lsmod | grep dr
+   29  sudo reboot
+   30  fallocate -l 100G /image.img 
+   31  losetup -fP /image.img
+   32  losetup -a
+   33  pvcreate /dev/loop0
+   34  vgcreate vg_ssd /dev/loop0
+   35  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd vg_ssd
+   36  linstor storage-pool list
+   37  linstor n l
+   38  linstor
+   39  systemctl disable --now  linstor-controller
+   40  systemctl disable --now  linstor-satellite
+   41  systemctl status linstor-satellite
+   42  systemctl status linstor-controller
+   43  systemctl enable --now  linstor-controller
+   44  systemctl enable --now  linstor-satellite
+   45  systemctl status linstor-controller
+   46  systemctl status linstor-satellite
+   47  cat /etc/iptables.conf 
+   48  history
+   49  exit
+   50  linstor node create vmi536198.contaboserver.net 161.97.170.117 --node-type Combined
+   51  linstor node create vmi522170.contaboserver.net 161.97.92.57
+   52  linstor node list
+   53  history
+   54  linstor create-storage-pool-defintion
+   55  linstor create-storage-pool-definition
+   56  linstor create-storage-pool-definition drbdpool
+   57  linstor create-storage-pool-definition --help
+   58  linstor create-storage-pool-definition 
+   59  linstor
+   60  linstor -v
+   61  linstor create-storage-pool-definitions drbdpool
+   62  history
+   63  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd vg_ssd
+   64  linstor storage-pool create lvm vmi522170.contaboserver.net pool_ssd vg_ssd
+   65  linstor list-storage-pools
+   66  linstor s l
+   67  linstor storage-pool list
+   68  linstor sp l
+   69  linstor physical-storage list
+   70  lvm pv
+   71  lvm 
+   72  lvm pvs
+   73  lvm vgs
+   74  linstor physical-storage list
+   75  linstor storage-pool list
+   76  linstor physical-storage list
+   77  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN
+   78  linstor physical-storage create-device-pool --pool-name pool_ssd LVMTHIN
+   79  linstor physical-storage create-device-pool --pool-name 
+   80  linstor resource-group create my_ssd_group --storage-pool pool_ssd --place-count 2
+   81  linstor volume-group create my_ssd_group
+   82  linstor resource-group spawn-resources my_ssd_group my_ssd_res 20G
+   83  linstor resource-group list
+   84  linstor resource-group spawn-resources list
+   85  linstor node list
+   86  systemctl status linstor.satellite
+   87  systemctl status linstor.controller
+   88  history
+   89  systemctl status linstor.satellite
+   90  histor
+   91  systemctl status linstor.controller
+   92  systemctl status 
+   93  systemctl status | grep linstor
+   94  systemctl status linstor-controller
+   95  systemctl status linstor-satellite
+   96  linstor resource-group spawn-resources my_ssd_group my_ssd_res 20G
+   97  linstor resource-group list
+   98  linstor resource-group my_ssd_group
+   99  linstor resource-group list-properties my_ssd_group
+  100  linstor resource-group list-properties
+  101  for i n {00..09°; d
+  102  for i n {00..09}; do
+  103  for i in {00..09}; do linstor create-resource-definition r$i; linstor create-volume-definition r$i 2Gib; for n in vmi536198 vmi522170; do linstor create-resource -s ; ;
+  104  linstor list-resources
+  105  linstor resource list
+  106  cat /etc/iptables.conf 
+  107  vi /etc/iptables.conf 
+  108  history | grep ipta
+  109  iptables-restore -n /etc/iptables.conf 
+  110  vi /etc/iptables.conf 
+  111  iptables-restore -n /etc/iptables.conf 
+  112  linstor resource list
+  113  linstie node list
+  114  linstor node list
+  115  linstor resource list
+  116  cat /etc/drbd.d/linstor-resources.res 
+  117  cat /etc/drbd.conf 
+  118  cat /etc/drbd.d/global_common.conf 
+  119  cat /etc/drbd.conf 
+  120  cat /etc/drbd.d/linstor-resources.res 
+  121  cat /var/lib/linstor.d/linstor_common.conf 
+  122  cat /var/lib/linstor.d/my_ssd_res.res 
+  123  vi /etc/iptables.conf 
+  124  netstat -a
+  125  apt install net-toold
+  126  apt install net-tools
+  127  netstat -a
+  128  q
+  129  vi /etc/iptables.conf 
+  130  iptables-restore -n /etc/iptables.conf 
+  131  linstor resource list
+  132  ntop
+  133  apt install ntop
+  134  apt install ntopng
+  135  lsof -i -P -n | grep LISTEN
+  136  lsof -i -P -n 
+  137  lsof -i -P -n | grep 7000
+  138  linstor resource list
+  139  ntopng
+  140  ntopng --help
+  141  ntopng -w 0.0.0.0:8000
+  142  iftop
+  143  apt install iftop
+  144  iftop
+  145  linstor resource list
+  146  iftop
+  147  linstor resource list
+  148  ls -l /dev/drbd*
+  149  mkfs.ext4 /dev/drbd1000 
+  150  mount /dev/drbd1000 /mnt
+  151  df -h
+  152  echo "toto" > /mnt/titi
+  153  umount /dev/drbd1000 /mnt
+  154  umount /dev/drbd1000
+  155  umount /mnt
+  156  df -h
+  157  drbdtop
+  158  apt install drbdtop
+  159  docker plugin install linbit/linstor-docker-volume
+  160  cat /etc/linstor/linstor.toml
+  161  vi /etc/linstor/docker-volume.conf
+  162  docker volume create -d linstor              --opt fs=xfs --opt size=200 lsvol
+  163  docker plugin 
+  164  docker plugin  ls
+  165  docker plugin inspect 0f3
+  166  cat /etc/linstor/docker-volume.conf
+  167  docker ps
+  168  docker volume create -d linstor              --opt fs=xfs --opt size=200 lsvol
+  169  journalctl -u docker
+  170  docker plugin ls
+  171  docker plugin
+  172  docker plugin disable 0f3
+  173  docker plugin ls
+  174  docker plugin rm 0f3
+  175  docker plugin ls
+  176  docker plugin install lade/linstor
+  177  docker plugin ls
+  178  docker volume create -d linstor              --opt fs=xfs --opt size=200 lsvol
+  179  docker volume create -d lade/linstor              --opt fs=xfs --opt size=200 lsvol
+  180  docker volumes
+  181  docker volume ls
+  182  history | grep linstor
+  183  history | grep plugin
+  184  docker plugin install linbit/linstor-docker-volume
+  185  docker plugin ls
+  186  docker plugin install 
+  187  docker plugin install --help
+  188  docker plugin install linbit/linstor-docker-volume --alias linstor
+  189  docker plugin ls
+  190  docker volume create -d linstor              --opt fs=xfs --opt size=200 newvol
+  191  history | grep linstor
+  192  linstor node list
+  193  linstor resource list
+  194  cat /etc/drbd.d/linstor-resources.res 
+  195  cat /var/lib/linstor.d/newvol.res 
+  196  cat /var/lib/linstor.d/lsvol.res 
+  197  cat /var/lib/linstor.d/my_ssd_res.res 
+  198  vi /etc/iptables.conf 
+  199  iptables-restore -n /etc/iptables.conf 
+  200  linstor resource list
+  201  docker volume create -d linstor              --opt fs=xfs --opt size=200 vol1
+  202  linstor resource list
+  203  vi /etc/iptables.conf 
+  204  iptables-restore -n /etc/iptables.conf 
+  205  df -h
+  206  history > /home/onebuck/swarm/history.root
+  207  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN 
+  208  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi536198.contaboserver.net /dev/loop0
+  209  fallocate -l 10G /image.img
+  210  fallocate -l 10G /disk10G.img
+  211  losetup -fP /disk10G.img
+  212  losetup -a
+  213  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi536198.contaboserver.net /dev/loop0
+  214  losetup -a
+  215  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi536198.contaboserver.net /dev/loop1
+  216  linstor physical-storage create-device-pool --pool-name lv_my_pool LVMTHIN vmi522170.contaboserver.net /dev/loop1
+  217  vi history.root 
+  218  linstor ps l
+  219  linstor sp l
+  220  vi history.root 
+  221  linstor 
+  222  lvm pvs
+  223  lvm vgs
+  224  fallocate -l 20G /disk20G.img
+  225  losetup -fP /disk20G.img
+  226  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi522170.contaboserver.net /dev/loop2
+  227  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi536198.contaboserver.net /dev/loop2
+  228  lvm pvs
+  229  lvm vgs
+  230  vi history.root 
+  231  linstor ps l
+  232  linstor sp l
+  233  linstor resource-group create disk20G --storage-pool disk20G
+  234  linstor volume-group create disk20G
+  235  linstor resource-group spawn-resources disk20G disk20G  20G
+  236  linstor resource-group create disk20G --storage-pool disk20G --place-count 2
+  237  linstor resource-group delete disk20G
+  238  linstor resource-group create disk20G --storage-pool disk20G --place-count 2
+  239  linstor resource-group spawn-resources disk20G disk20G  20G
+  240  vi history.root 
+  241  docker volume ls
+  242  linstor vg l
+  243  linstor vg list
+  244  linstor
+  245  linstor v l
+  246  docker volume ls
+  247  linstor sp l
+  248  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi536198.contaboserver.net /dev/loop2
+  249* 
+  250  linstor physical-storage create-device-pool --pool-name disk20G LVMTHIN vmi536198.contaboserver.net /dev/loop2
+  251  linstor storage-pool create lvm vmi536198.contaboserver.net pool2_ssd disk20G
+  252  lvm vgs
+  253  linstor storage-pool create lvm vmi536198.contaboserver.net pool2_ssd linstor_disk20G
+  254  linstor storage-pool create lvm vmi536198.contaboserver.net pool3_ssd linstor_disk20G
+  255  linstor sp l
+  256  vi history.root
+  257  linstor storage-pool create lvm vmi522170.contaboserver.net pool3_ssd linstor_disk20G
+  258  linstor sp l
+  259  vi history.root
+  260  linstor rg l
+  261  linstor r l
+  262  docker volume create -d linstor              --opt fs=xfs --opt size=400 vol400
+  263  linstor r l
+  264  hisotry | grep linstor
+  265  history | grep linstor
+  266  linstor v l
+  267  linstor sp l
+  268  cat /etc/docker/key.json
+  269  cat /etc/linstor/docker-volume.conf
+  270  vi /etc/linstor/docker-volume.conf
+  271  linstor sp l
+  272  vi /etc/linstor/docker-volume.conf
+  273  docker volume create -d linstor               --opt size=200 testvol
+  274  linstor sp l
+  275  vi history
+  276  vi history.root 
+  277  history | grep linstor
+  278  linstor sp l
+  279  linstor g l
+  280  linstor rg l
+  281  linstor vg l
+  282  linstor v l
+  283  history | grep linstor > history.linstor
+  284  docker run -it --rm --name=cont              -v lsvol:/data --volume-driver=linstor busybox sh
+  285  docker run -it --rm --name=cont              -v vol1:/data --volume-driver=linstor busybox sh
+  286  docker run -it --rm --name=cont              -v my_ssd_res:/data --volume-driver=linstor busybox sh
+  287  docker run -it --rm --name=cont              -v vol1:/data --volume-driver=linstor busybox sh
+  288  mkfs.xfs
+  289  apt install xfsprogs
+  290  docker run -it --rm --name=cont              -v vol1:/data --volume-driver=linstor busybox sh
+  291  mkfs.xfs
+  292  mkfs.xfs /dev/drbd1003
+  293  history | grep volume
+  294  vi /etc/linstor/docker-volume.conf 
+  295  history | grep volume
+  296  docker run -it --rm --name=cont              -v vol2G:/data --volume-driver=linstor busybox sh
+  297  mkfs.xfs /dev/drbd1005
+  298  docker run -it --rm --name=cont              -v vol2G:/data --volume-driver=linstor busybox sh
+  299  docker ps
+  300  cat /etc/linstor/docker-volume.conf 
+  301  echo /etc/linstor/docker-volume.conf > docker-volume.conf
+  302  vi history.root 
+  303  linstor v l
+  304  history | grep vol2G
+  305  history
+  306  docker volume create -d linstor               --opt size=4G vol4G
+  307  linstor v l
+  308  docker run -it --rm --name=cont              -v vol4G:/data --volume-driver=linstor busybox sh
+  309  mkfs.xfs /dev/drbd1006
+  310  linstor v l
+  311  docker run -it --rm --name=cont              -v vol4G:/data --volume-driver=linstor busybox sh
+  312  vi history.root 
+  313  history > history.root.brut
