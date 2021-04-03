@@ -1,4 +1,5 @@
 #!/bin/bash
+set -o xtrace
 
 #
 # Add User onebuck
@@ -26,16 +27,15 @@ cp iptables.service /etc/systemd/system/iptables.service
 systemctl enable --now iptables
 
 #
-# Install Net Tools
+# Install Net Tools and XFS
 #
 apt install net-tools iftop -y
+apt install xfsprogs -y
 
 #
 # Install LINSTOR
 #
 add-apt-repository -y ppa:linbit/linbit-drbd9-stack
 apt-get update -y
-apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client
-
-
-
+apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client linstor-controller
+cp linstor-client.conf /etc/linstor/linstor-client.conf

@@ -1,0 +1,1 @@
+losetup -fP /disk150G.img
