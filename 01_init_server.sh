@@ -15,8 +15,14 @@ systemctl enable --now  linstor-satellite
 #
 fallocate -l 150G /disk150G.img
 losetup -fP /disk150G.img
+<<<<<<< HEAD
 losetup -a
 vgcreate vg_ssd /dev/loop0
+=======
+cp rc.local /etc/rc.local
+losetup -a
+
+>>>>>>> 71d72d80cdef98cab129db9836b4b00c8219bd42
 
 #
 # Create LINSTOR Cluster
@@ -26,6 +32,7 @@ if [ "$SERVER" = vmi536198  ]; then
   linstor node create vmi522170.contaboserver.net 161.97.92.57
   linstor node list
 fi
+<<<<<<< HEAD
 
 #
 # Create LINSTOR Storage
@@ -49,3 +56,5 @@ if [ "$SERVER" = vmi536198  ]; then
    docker volume create -d linstor --opt fs=xfs --opt size=2G testvol 
 fi
 docker run -it --rm --name=cont -v testvol:/data --volume-driver=linstor busybox ps aux
+=======
+>>>>>>> 71d72d80cdef98cab129db9836b4b00c8219bd42

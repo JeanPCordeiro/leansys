@@ -27,9 +27,10 @@ cp iptables.service /etc/systemd/system/iptables.service
 systemctl enable --now iptables
 
 #
-# Install Net Tools
+# Install Net Tools and XFS
 #
 apt install net-tools iftop -y
+apt install xfsprogs -y
 
 #
 # Install LINSTOR & XFS
@@ -37,5 +38,8 @@ apt install net-tools iftop -y
 add-apt-repository -y ppa:linbit/linbit-drbd9-stack
 apt-get update -y
 apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client linstor-controller
+<<<<<<< HEAD
 apt install xfsprogs -y
+=======
+>>>>>>> 71d72d80cdef98cab129db9836b4b00c8219bd42
 cp linstor-client.conf /etc/linstor/linstor-client.conf
