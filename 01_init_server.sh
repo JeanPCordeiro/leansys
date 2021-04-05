@@ -14,10 +14,14 @@ systemctl enable --now  linstor-satellite
 # Create Virtual disk
 #
 fallocate -l 150G /disk150G.img
-losetup -fP /disk150G.img
+#losetup -fP /disk150G.img
 losetup -a
 #vgcreate vg_ssd /dev/loop0
 #cp rc.local /etc/rc.local
+cp losetup.service /etc/systemd/system/losetup.service
+systemctl enable --now losetup
+losetup -a
+
 
 #
 # Create LINSTOR Cluster
