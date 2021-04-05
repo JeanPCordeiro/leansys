@@ -16,8 +16,8 @@ systemctl enable --now  linstor-satellite
 fallocate -l 150G /disk150G.img
 losetup -fP /disk150G.img
 losetup -a
-vgcreate vg_ssd /dev/loop0
-cp rc.local /etc/rc.local
+#vgcreate vg_ssd /dev/loop0
+#cp rc.local /etc/rc.local
 
 #
 # Create LINSTOR Cluster
@@ -33,8 +33,10 @@ cp linstor-client.conf /etc/linstor/linstor-client.conf
 # Create LINSTOR Storage
 #
 if [ "$SERVER" = vmi536198  ]; then
-  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd vg_ssd
-  linstor storage-pool create lvm vmi522170.contaboserver.net pool_ssd vg_ssd
+  linstor physical-storage create-device-pool --pool-name disk150G LVM vmi536198.contaboserver.net /dev/loop0
+  linstor physical-storage create-device-pool --pool-name disk150G LVM vmi522170.contaboserver.net /dev/loop0
+  linstor storage-pool create lvm vmi536198.contaboserver.net pool_ssd disk150G
+  linstor storage-pool create lvm vmi522170.contaboserver.net pool_ssd disk150G
   linstor sp l
 fi
 
