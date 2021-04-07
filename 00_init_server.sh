@@ -11,7 +11,8 @@ usermod -aG sudo onebuck
 # Install GlusterFS
 #
 apt install software-properties-common -y
-add-apt-repository ppa:gluster/glusterfs-7 -y
+#add-apt-repository ppa:gluster/glusterfs-7 -y
+add-apt-repository ppa:gluster/glusterfs-3.12
 apt update -y
 apt install glusterfs-server -y
 apt install glusterfs-client -y
@@ -26,7 +27,7 @@ SERVER=`hostname -s`
 if [ "$SERVER" == vmi536198  ]; then
   gluster peer probe vmi522170.contaboserver.net
   gluster peer status
-  gluster volume create volume1 replica 2 vmi536198.contaboserver.net:/gluster-storage vmi522170.contaboserver.net:/gluster-storage force
+  gluster volume create dockervols replica 2 vmi536198.contaboserver.net:/gluster-storage vmi522170.contaboserver.net:/gluster-storage force
   gluster volume start dockervols
   gluster volume status
   gluster volume profile dockervols start
