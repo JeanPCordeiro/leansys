@@ -8,6 +8,30 @@ adduser onebuck
 usermod -aG sudo onebuck
 
 #
+# Install GlusterFS
+#
+add-apt-repository ppa:gluster/glusterfs-7 -y
+apt update -y
+apt install glusterfs-server -y
+apt install glusterfs-client -y
+systemctl start glusterd.service
+systemctl enable glusterd.service
+systemctl status glusterd.service
+
+#
+# Configure GlusterFS
+#
+if [ "$SERVER" = vmi536198  ]; then
+  gluster peer probe vmi522170.contaboserver.net
+  gluster peer status
+  gluster volume create volume1 replica 2 vmi536198.contaboserver.net:/gluster-storage vmi522170.contaboserver.net:/gluster-storage force
+  gluster volume start dockervols
+  gluster volume status
+  gluster volume profile dockervols start
+  gluster volume profile dockervols info
+fi
+
+#
 # Install docker
 #
 sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
@@ -19,6 +43,14 @@ sudo systemctl status docker
 sudo usermod -aG docker onebuck
 
 #
+# Reconfigure Docker
+#
+systemctl stop docker
+mount -t glusterfs vmi536198.contaboserver.net:/dockervols /var/lib/docker/volumes
+systemctl start docker
+echo 'vmi536198.contaboserver.net:/dockervols /var/lib/docker/volumes glusterfs defaults,_netdev,backupvolfile-server=vmi522170.contaboserver.net0 0' >> /etc/fstab
+
+#
 # Set Firewall
 #
 cp iptables.conf /etc/iptables.conf
@@ -27,16 +59,7 @@ cp iptables.service /etc/systemd/system/iptables.service
 systemctl enable --now iptables
 
 #
-# Install Net Tools and XFS
+# Install Net Tools
 #
 apt install net-tools iftop -y
-apt install xfsprogs -y
 
-#
-# Install LINSTOR & XFS
-#
-add-apt-repository -y ppa:linbit/linbit-drbd9-stack
-apt-get update -y
-apt-get install -y --no-install-recommends drbd-dkms drbd-utils lvm2 linstor-satellite linstor-client linstor-controller
-apt install xfsprogs -y
-#cp linstor-client.conf /etc/linstor/linstor-client.conf
