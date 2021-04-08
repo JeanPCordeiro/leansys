@@ -27,12 +27,11 @@ sudo systemctl status docker
 sudo usermod -aG docker onebuck
 
 #
-# Reconfigure Docker
+# Install Docker Plugin GlusterFS
 #
-#systemctl stop docker
-#mount -t glusterfs vmi536198.contaboserver.net:/dockervols /var/lib/docker/volumes
-#systemctl start docker
-#echo 'vmi536198.contaboserver.net:/dockervols /var/lib/docker/volumes glusterfs defaults,_netdev,backupvolfile-server=vmi522170.contaboserver.net0 0' >> /etc/fstab
+if [ "$SERVER" == vmi536198  ]; then
+  docker plugin install --alias glusterfs2 mikebarkmin/glusterfs SERVERS=vmi536198.contaboserver.net,vmi522170.contaboserver.net VOLNAME=dockervols DEBUG=1
+fi
 
 #
 # Set Firewall

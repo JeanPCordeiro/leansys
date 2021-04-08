@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  foo:
+    image: alpine
+    command: ping localhost
+    networks:
+      - net
+    volumes:
+      - vol1:/tmp
+
+networks:
+  net:
+    driver: overlay
+
+volumes:
+  vol1:
+    driver: glusterfs2
+    name: "myvolume"
+
