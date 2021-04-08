@@ -12,7 +12,8 @@ usermod -aG sudo onebuck
 #
 apt install software-properties-common -y
 #add-apt-repository ppa:gluster/glusterfs-7 -y
-add-apt-repository ppa:gluster/glusterfs-3.12 -y
+#add-apt-repository ppa:gluster/glusterfs-3.12 -y
+add-apt-repository ppa:gluster/glusterfs-9 -y
 apt update -y
 apt install glusterfs-server -y
 apt install glusterfs-client -y

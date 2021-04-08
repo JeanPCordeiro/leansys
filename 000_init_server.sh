@@ -29,9 +29,7 @@ sudo usermod -aG docker onebuck
 #
 # Install Docker Plugin GlusterFS
 #
-if [ "$SERVER" == vmi536198  ]; then
-  docker plugin install --alias glusterfs2 mikebarkmin/glusterfs SERVERS=vmi536198.contaboserver.net,vmi522170.contaboserver.net VOLNAME=dockervols DEBUG=1
-fi
+docker plugin install --alias glusterfs mikebarkmin/glusterfs SERVERS=vmi536198.contaboserver.net,vmi522170.contaboserver.net VOLNAME=dockervols DEBUG=1
 
 #
 # Set Firewall
@@ -42,7 +40,11 @@ cp iptables.service /etc/systemd/system/iptables.service
 systemctl enable --now iptables
 
 #
-# Install Net Tools
+# Install Net Tools & Fail2Ban
 #
 apt install net-tools iftop -y
+apt install fail2ban -y
+fail2ban-client status 
+fail2ban-client status sshd
+
 

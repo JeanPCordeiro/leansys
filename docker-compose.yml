@@ -3,6 +3,9 @@ version: "3.8"
 services:
   foo:
     image: alpine
+    deploy:
+      mode: replicated
+      replicas: 6
     command: ping localhost
     networks:
       - net
@@ -15,6 +18,6 @@ networks:
 
 volumes:
   vol1:
-    driver: glusterfs2
+    driver: glusterfs
     name: "myvolume"
 
