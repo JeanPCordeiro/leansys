@@ -94,6 +94,7 @@ volumes:
   # Traefik is always deployed to the same Docker node with the same volume containing
   # the HTTPS certificates
   traefik-public-certificates:
+          driver: gfs1
 
 networks:
   # Use the previously created public network "traefik-public", shared with other

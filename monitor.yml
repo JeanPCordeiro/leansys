@@ -8,9 +8,12 @@ networks:
     external: true
 
 volumes:
-    prometheus: {}
-    grafana: {}
-    alertmanager: {}
+    prometheus:
+        driver: gfs1
+    grafana:
+        driver: gfs1
+    alertmanager:
+        driver: gfs1
 
 configs:
   node_rules:

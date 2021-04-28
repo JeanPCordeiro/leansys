@@ -7,8 +7,9 @@ set -o xtrace
 SERVER=`hostname -s`
 if [ "$SERVER" == vmi536198  ]; then
   gluster peer probe vmi522170.contaboserver.net
+  gluster peer probe vmi576145.contaboserver.net
   gluster peer status
-  gluster volume create dockervols replica 2 vmi536198.contaboserver.net:/gluster-storage vmi522170.contaboserver.net:/gluster-storage force
+  gluster volume create dockervols replica 3 vmi536198.contaboserver.net:/gluster-storage vmi522170.contaboserver.net:/gluster-storage vmi576145.contaboserver.net:/gluster-storage force
   gluster volume start dockervols
   gluster volume status
   gluster volume profile dockervols start
@@ -29,15 +30,16 @@ sudo usermod -aG docker onebuck
 #
 # Install Docker Plugin GlusterFS
 #
-docker plugin install --alias glusterfs mikebarkmin/glusterfs SERVERS=vmi536198.contaboserver.net,vmi522170.contaboserver.net VOLNAME=dockervols DEBUG=1
+docker plugin install --alias gfs1 mikebarkmin/glusterfs SERVERS=vmi536198.contaboserver.net,vmi522170.contaboserver.neti,vmi576145.contaboserver.net VOLNAME=dockervols DEBUG=1
+docker plugin install --alias gfs2 originnexus/glusterfs-plugin SERVERS=vmi536198.contaboserver.net,vmi522170.contaboserver.net,vmi576145.contaboserver.net VOLUME_NAME=dockervols
 
 #
 # Set Firewall
 #
-cp iptables.conf /etc/iptables.conf
-iptables-restore -n /etc/iptables.conf
-cp iptables.service /etc/systemd/system/iptables.service
-systemctl enable --now iptables
+#cp iptables.conf /etc/iptables.conf
+#iptables-restore -n /etc/iptables.conf
+#cp iptables.service /etc/systemd/system/iptables.service
+#systemctl enable --now iptables
 
 #
 # Install Net Tools & Fail2Ban
@@ -46,5 +48,4 @@ apt install net-tools iftop -y
 apt install fail2ban -y
 fail2ban-client status 
 fail2ban-client status sshd
-
 

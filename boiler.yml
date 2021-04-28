@@ -1,7 +1,8 @@
 version: "3.8"
 
 volumes:
-    db_data: {}
+    db_data: 
+        driver: glusterfs
 
 services:
 

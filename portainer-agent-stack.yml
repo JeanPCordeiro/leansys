@@ -50,4 +50,5 @@ networks:
 
 volumes:
   portainer-data:
+          driver: gfs1
 
