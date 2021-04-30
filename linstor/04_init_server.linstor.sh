@@ -4,6 +4,7 @@ set -o xtrace
 #
 # Create LINSTOR Storage
 #
+SERVER=`hostname -s`
 if [ "$SERVER" = vmi536198  ]; then
   linstor physical-storage create-device-pool --pool-name disk150G LVM vmi536198.contaboserver.net /dev/loop0
   linstor physical-storage create-device-pool --pool-name disk150G LVM vmi522170.contaboserver.net /dev/loop0
