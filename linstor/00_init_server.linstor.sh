@@ -2,6 +2,13 @@
 set -o xtrace
 
 #
+# Install fail2ban
+#
+apt install fail2ban -y
+fail2ban-client status
+fail2ban-client status sshd
+
+#
 # Add User onebuck
 #
 adduser onebuck

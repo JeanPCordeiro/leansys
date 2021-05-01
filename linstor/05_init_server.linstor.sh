@@ -14,6 +14,6 @@ docker plugin enable lade/linstor
 #
 SERVER=`hostname -s`
 if [ "$SERVER" = vmi536198  ]; then
-   docker volume create -d lade/linstor --opt size=2G testvol 
-   docker run -it --rm --name=cont -v testvol:/data --volume-driver=lade/linstor busybox ps aux
+   docker volume create -d lade/linstor --opt size=10M initvol
+   docker run -it --rm --name=cont -v initvol:/data --volume-driver=lade/linstor busybox ps aux
 fi
