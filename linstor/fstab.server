@@ -1,0 +1,1 @@
+/dev/drbd0 /nfs_data ext4 rw 0 0
