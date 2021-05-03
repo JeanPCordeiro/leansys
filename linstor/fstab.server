@@ -1,1 +1,1 @@
-/dev/drbd0 /nfs_data ext4 rw 0 0
+/dev/drbd1000 /nfs_data ext4 rw 0 0

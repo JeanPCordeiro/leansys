@@ -10,7 +10,7 @@
 ### END INIT INFO
 
 dir="/usr/local/bin"
-cmd="convoy daemon --drivers vfs --driver-opts vfs.path=/nfs-data/docker/volumes"
+cmd="convoy daemon --drivers vfs --driver-opts vfs.path=/mnt/docker/volumes"
 user="root"
 name="convoy"
 
