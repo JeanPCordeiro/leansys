@@ -24,6 +24,6 @@ systemctl status convoy-plugin
 SERVER=`hostname -s`
 if [ "$SERVER" = vmi536198  ]; then
    docker volume create --name initvol -d convoy
-   docker run -it --rm --name=cont -v initvol:/data --volume-driver=lade/linstor busybox ps aux
+   docker run -it --rm --name=cont -v initvol:/data --volume-driver=convoy busybox ps aux
 fi
 

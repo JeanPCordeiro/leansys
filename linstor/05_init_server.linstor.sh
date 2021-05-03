@@ -9,6 +9,7 @@ apt install -y nfs-kernel-server
 apt install -y nfs-common
 cp exports /etc/exports
 mkdir /nfs_data
+cat fstab.server >> /etc/fstab
 
 SERVER=`hostname -s`
 if [ "$SERVER" = vmi536198  ]; then

@@ -50,6 +50,4 @@ networks:
 
 volumes:
   portainer-data:
-          driver: lade/linstor
-          driver_opts:
-                  size: 5G
+          driver: convoy
