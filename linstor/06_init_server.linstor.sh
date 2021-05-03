@@ -10,6 +10,7 @@ mount -a
 wget https://github.com/rancher/convoy/releases/download/v0.5.2/convoy.tar.gz
 tar xvzf convoy.tar.gz
 cp convoy/convoy convoy/convoy-pdata_tools /usr/local/bin/
+rm -fr convoy
 mkdir -p /etc/docker/plugins/
 bash -c 'echo "unix:///var/run/convoy/convoy.sock" > /etc/docker/plugins/convoy.spec'
 cp convoy-plugin /etc/init.d/convoy-plugin
