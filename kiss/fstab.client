@@ -1,0 +1,1 @@
+vmi536198.contaboserver.net:/nfs_data /mnt nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0

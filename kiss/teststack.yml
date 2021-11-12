@@ -1,0 +1,12 @@
+version: '3.8'
+
+volumes:
+  data:
+    driver: convoy
+
+services:
+  test:
+    image: alpine:edge
+    command: sh -c "echo $HOSTNAME >> /data/hosts.log"
+    volumes:
+      - data:/data
