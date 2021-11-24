@@ -1,0 +1,64 @@
+version: '3.3'
+
+networks:
+  internal:
+    driver: overlay
+    attachable: true
+  traefik-public:
+    external: true
+
+services:
+
+    mysql:
+        image: 'mysql/mysql-server:8.0'
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: on-failure
+            delay: 10s
+            max_attempts: 10
+            window: 15s
+        environment:
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: 'sigma'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping"]
+            retries: 3
+            timeout: 5s
+        networks:
+          - internal
+    
+    laravel:
+        image: jpcordeiro/sigmasix
+        environment:
+            LARAVEL_SAIL: 1
+            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
+            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
+        depends_on:
+          - mysql
+        deploy:
+          replicas: 1
+          restart_policy:
+            condition: any
+            delay: 10s
+            max_attempts: 10
+            window: 15s
+          labels:
+            - traefik.enable=true
+            - traefik.docker.network=traefik-public
+            - traefik.constraint-label=traefik-public
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-http.rule=Host(`${CLIENT_ID}.lean-sys.com`)
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-http.entrypoints=http
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-http.service=sigmasix-${CLIENT_ID}
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-http.middlewares=https-redirect
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-https.rule=Host(`${CLIENT_ID}.lean-sys.com`)
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-https.entrypoints=https
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-https.service=sigmasix-${CLIENT_ID}
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-https.tls=true
+            - traefik.http.routers.sigmasix-${CLIENT_ID}-https.tls.certresolver=le
+            - traefik.http.services.sigmasix-${CLIENT_ID}.loadbalancer.server.port=80
+        networks:
+          - internal
+          - traefik-public
+

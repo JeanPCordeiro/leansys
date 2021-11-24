@@ -11,8 +11,8 @@ fail2ban-client status sshd
 #
 # Add User csrlean
 #
-adduser csrlean
-usermod -aG sudo csrlean
+adduser leansys
+usermod -aG sudo leansys
 
 #
 # Install docker
