@@ -1,0 +1,510 @@
+    1  ls
+    2  git
+    3  apt install git
+    4  apt update
+    5  apt upgrade
+    6  reboot
+    7  git clone https://github.com/JeanPCordeiro/csrlean.git
+    8  ls
+    9  cd csrlean
+   10  ls
+   11  mkdir kiss
+   12  cp -fvr linstor/. kiss/.
+   13  cd kiss/
+   14  ls
+   15  ls -l
+   16  vi 00_init_server.linstor.sh 
+   17  vi 01_init_server.linstor.sh 
+   18  cat 01_init_server.linstor.sh 
+   19  rm 01_init_server.linstor.sh 
+   20  ls
+   21  cat 02_init_server.linstor.sh 
+   22  rm 02_init_server.linstor.sh 
+   23  cat 03_init_server.linstor.sh 
+   24  rm 03
+   25  rm 03_init_server.linstor.sh 
+   26  cat 04_init_server.linstor.sh 
+   27  rm 04
+   28  rm 04_init_server.linstor.sh 
+   29  ls
+   30  ls -l
+   31  cat 05_init_server.linstor.sh 
+   32  rm 05_init_server.linstor.sh 
+   33  ls
+   34  ls -
+   35  ls -l
+   36  cat 06_init_server.linstor.sh 
+   37  rm 06_init_server.linstor.sh 
+   38  ls
+   39  ls -l
+   40  mv 00_init_server.linstor.sh 1_init_server.sh
+   41  ls -l
+   42  cat 1_init_server.sh 
+   43  ./1_init_server.sh 
+   44  ls
+   45  reboot
+   46  ls
+   47  cd /root/csrlean/
+   48  ls
+   49  cd kiss
+   50  ls
+   51  cat 2_init_swarm.sh 
+   52  ./2_init_swarm.sh 
+   53  vi 1_init_server.sh 
+   54  vi 2_init_swarm.sh 
+   55  ./2_init_swarm.sh 
+   56  docker node ls
+   57  cat 3_init_traefik.sh 
+   58  vi 3_init_traefik.sh 
+   59  ls
+   60  vi traefik-host.yml 
+   61  vi 3_init_traefik.sh 
+   62  ./3_init_traefik.sh 
+   63  docker service logs traefik_traefik
+   64  docker stack ps traefik
+   65  docker service logs traefik_traefik
+   66  vi 3_init_traefik.sh 
+   67  docker ps
+   68  docker stack ps
+   69  docker stack ps traefik
+   70  cat 3_init_traefik.sh 
+   71  docker service logs traefik_traefik
+   72  vi traefik-host.yml 
+   73  docker node ls
+   74  docker node
+   75  docker node inspect
+   76  docker node inspect ntx3
+   77  cat 3_init_traefik.sh 
+   78  docker stack ps traefik
+   79  docker ps
+   80  docker service ltraefik_traefik
+   81  docker service logs traefik_traefik
+   82  docker stack ps traefik --help
+   83  docker stack ps traefik --no-trunc
+   84  cat 2_init_swarm.sh 
+   85  docker swarm join-token manager
+   86  docker swarm join --token SWMTKN-1-3h4t4kdhk3izs95jhakmoqj99sprrzrjgsdexjb2f2afjienu5-chtkniy9mgc7rgwrpb4ys2rj6 178.18.248.191:2377
+   87  docker node ls
+   88  docker stack 
+   89  docker stack rm traefik
+   90  docker stack
+   91  docker stack ls
+   92  docker stack ps
+   93  docker stack ps traefik --no-trunc
+   94  ./3_init_traefik.sh 
+   95  docker stack ps traefik --no-trunc
+   96  docker info
+   97  vi 1_init_server.sh 
+   98  sudo usermod -aG docker csrlean
+   99  docker swarm
+  100  cat 2_init_swarm.sh 
+  101  ./2_init_swarm.sh 
+  102  docker swarm leave
+  103  docker swarm leave --force
+  104  ./2_init_swarm.sh 
+  105  docker swarm join --token SWMTKN-1-50aaq6m9ire23lwdcty0ow9fltk3nyfaivw83jw2nlnx8bqpob-8z0h057h2qv1nfskm2u7jfljg 178.18.248.191:2377
+  106  cat 2_init_swarm.sh 
+  107  docker node ls
+  108  ./3_init_traefik.sh 
+  109  docker stack ps traefik --no-trunc
+  110  cd /
+  111  ls
+  112  cd root/
+  113  ls
+  114  cd csrlean/
+  115  ls
+  116  cd kiss/
+  117  ls
+  118  cat 3_init_traefik.sh 
+  119  docker service logs traefik_traefik
+  120  vi traefik-host.yml 
+  121  docker stack ls
+  122  docker stack rm traefik
+  123  docker stack ls
+  124  ls
+  125  cat 3_init_traefik.sh 
+  126  ./3_init_traefik.sh 
+  127  docker stack ls
+  128  docker stack ps traefik
+  129  vi 3_init_traefik.sh 
+  130  vi traefik-host.yml 
+  131  ls
+  132  docker ps
+  133  docker logs -f abf
+  134  cd /root/csrlean/kiss/
+  135  ls
+  136  docker ps
+  137  dockder logs -f abf
+  138  docker logs -f abf
+  139  docker stack ls
+  140  docker stack rm traefik
+  141  ls
+  142  ./3_init_traefik.sh 
+  143  docker ps
+  144  docker logs -f 2708
+  145  docker stack ps traefil
+  146  docker stack ps traefik
+  147  docker ps
+  148  docker logs 2708
+  149  exit
+  150  ls
+  151  cd csrlean/
+  152  l
+  153  ls
+  154  cd kiss/
+  155  ls
+  156  history
+  157  ls
+  158  docker ps
+  159  docker node ls
+  160  ls
+  161  vi 4_init_portainer.sh 
+  162  vi portainer-agent-stack.yml 
+  163  vi 3_init_traefik.sh 
+  164  vi traefik-host.yml 
+  165  vi portainer-agent-stack.yml 
+  166  vi swarmcron.yml 
+  167  ./4_init_portainer.sh 
+  168  docker ps
+  169  cat 4_init_portainer.sh 
+  170  docker stack ls
+  171  docker stack ps portainer 
+  172  docker ps
+  173  ls
+  174  vi 5_init_monitor.sh 
+  175  ms
+  176  ls *.yml
+  177  vi monitor.yml 
+  178  ./5_init_monitor.sh 
+  179  uname -a
+  180  git add .
+  181  git commit -m "kiss stack"
+  182  git push
+  183  docker ps
+  184  ls
+  185  cd csrlean/
+  186  ls
+  187  cd old
+  188  ls
+  189  cd ..
+  190  cd kiss
+  191  ls
+  192  vi sigma.yml
+  193  cp 5_init_monitor.sh 6_init_sigma.sh
+  194  vi 6_init_sigma.sh 
+  195  cat 6_init_sigma.sh 
+  196  ./6_init_sigma.sh 
+  197  docker stack stop polico
+  198  docker stack rm polico
+  199  vi sigma.yml 
+  200  ./6_init_sigma.sh 
+  201  docker rm polico
+  202  dockr ps
+  203  docker stack rm polico
+  204  vi 5_init_monitor.sh 
+  205  vi monitor.yml 
+  206  vi sigma.yml 
+  207  vi monitor.yml 
+  208  vi sigma.yml 
+  209  ./6_init_sigma.sh 
+  210  docker ps
+  211  docker stack ps polico
+  212  docker stack ps swarmcron
+  213  docker stack ps monitor
+  214  docker ps
+  215  docker stack rm polico
+  216  vi sigma.yml 
+  217  cat monitor.yml 
+  218  grep * ports
+  219  grep * "ports"
+  220  grep "ports" *
+  221  grep "port" *
+  222  vi traefik-host.yml 
+  223  vi sigma.yml 
+  224  vi traefik-host.yml 
+  225  vi sigma.yml 
+  226  vi traefik-host.yml 
+  227  vi sigma.yml 
+  228  ./6_init_sigma.sh 
+  229  docker ps
+  230  vi portainer-agent-stack.yml 
+  231  docker service ls
+  232  docker stack rm polico
+  233  vi sigma.yml 
+  234  vi sigma.yml ./6_init_sigma.sh 
+  235  ./6_init_sigma.sh 
+  236  docker service ls
+  237  docker ps
+  238  vi sigma.yml 
+  239  docker stack rm polico
+  240  ./6_init_sigma.sh 
+  241  docker ps
+  242  docker stack rm polico
+  243  vi sigma.yml 
+  244  ./6_init_sigma.sh 
+  245  docker ps
+  246  vi monitor.yml 
+  247  vi sigma.yml 
+  248  docker stack rm polico
+  249  cat sigma.yml 
+  250  vi sigma.yml 
+  251  docker images
+  252  ./6_init_sigma.sh 
+  253  vi sigma.yml 
+  254  ./6_init_sigma.sh 
+  255  vi sigma.yml 
+  256  ./6_init_sigma.sh 
+  257  docker images
+  258  docker ps
+  259  docker images
+  260  docker ps
+  261  docker stack ls
+  262  docker stack ps polico
+  263  docker ps
+  264  docker logs 35a
+  265  docker ps
+  266  top
+  267  docker ps
+  268  uptime
+  269  reboot
+  270  docker ps
+  271  cat sig
+  272  ls
+  273  cd csrlean/
+  274  ls
+  275  cd kiss/
+  276  ls
+  277  cat sigma.yml 
+  278  vi sigma.yml 
+  279  docker stack rm polico
+  280  cat sigma.yml 
+  281  ./6_init_sigma.sh 
+  282  dockr ps
+  283  docker ps
+  284  docker logs 0c5
+  285  cat sigma.yml 
+  286  cd csrlean/
+  287  cd kiss
+  288  docker stack ls
+  289  docker rm polico
+  290  docker stack rm polico
+  291  vi 6_init_sigma.sh 
+  292  ./6_init_sigma.sh 
+  293  docker stack ls
+  294  docker stack ps polico
+  295  docker logs life
+  296  docker stack ps polico
+  297  docker ps
+  298  docker logs da182
+  299  cd csrlean/
+  300  cd kiss/
+  301  ls
+  302  cat 1_init_server.sh 
+  303  ls
+  304  docker stack ps
+  305  docker stack ls
+  306  docker stack rm polico
+  307  docker stack rm monitor
+  308  docker stack rm swarmcron
+  309  docker stack rm portainer
+  310  docker stack rm traefik
+  311  ls
+  312  docker ps
+  313  docker ps -a
+  314  docker system prune
+  315  docker images
+  316  docker image rm traefik
+  317  docker rmi traefik
+  318  docker images
+  319  docker volumes
+  320  docker volume
+  321  docker volume ls
+  322  docker volume prune
+  323  docker volume ls
+  324  docker network ls
+  325  cat 2_init_swarm.sh 
+  326  docker swarm
+  327  docker node ls
+  328  docker system prune
+  329  ls
+  330  vi 3_init_traefik.sh 
+  331  docker volume ls
+  332  ./3_init_traefik.sh 
+  333  docker volume ls
+  334  docker stack ls
+  335  docker ps
+  336  vi 3_init_traefik.sh 
+  337  vi 4_init_portainer.sh 
+  338  ./4_init_portainer.sh 
+  339  docker ps
+  340  ls
+  341  vi 5_init_monitor.sh 
+  342  ./5_init_monitor.sh 
+  343  vi 6_init_sigma.sh 
+  344  vi sigma.yml 
+  345  ./6_init_sigma.sh 
+  346  docker ps
+  347  docker stack ps polico
+  348  docker images
+  349  docker stack ps polico
+  350  docker stack ls
+  351  docker stack rm polico
+  352  vi 6_init_sigma.sh 
+  353  ./6_init_sigma.sh 
+  354  docker stack ls
+  355  vi 6_init_sigma.sh 
+  356  ./6_init_sigma.sh 
+  357  exit
+  358  ls
+  359  cd csrlean
+  360  cd kiss
+  361  ls
+  362  vi 1_init_server.sh 
+  363  adduser leansys
+  364  cd csrlean/kiss/
+  365  cat 1
+  366  cat 1_init_server.sh 
+  367  cat csrlean/kiss/1_init_server.sh 
+  368  usermod -aG sudo leansys
+  369  ls
+  370  cd /root/csrlean/kiss/
+  371  cat sigma.yml 
+  372  docker stack ps
+  373  docker stack ls
+  374  docker stack rm polico
+  375  vi 6_init_sigma.sh 
+  376  docker images
+  377  ./6_init_sigma.sh 
+  378  docker images
+  379  docker ps
+  380  docker stack ps nidec
+  381  docker images
+  382  docker stack ps nidec
+  383  docker images
+  384  docker stack ps nidec
+  385  docker logs l5j
+  386  docker stack ps nidec
+  387  docker ps
+  388  docker logs 597
+  389  docker logs 597 -f
+  390  cd csrlean/kiss/
+  391  cat sigma.yml 
+  392  vi sigmasix.yml
+  393  vi 6_init_sigma.sh 
+  394  ./6_init_sigma.sh 
+  395  cat sigmasix.yml 
+  396  vi 6_init_sigma.sh 
+  397  ./6_init_sigma.sh 
+  398  cat 6_init_sigma.sh 
+  399  docker stack rm polico
+  400  docker stack ls
+  401  cat 6_init_sigma.sh 
+  402  cat sigma.yml 
+  403  ./6_init_sigma.sh 
+  404  docker stack rm polico
+  405  cat sigma.yml 
+  406  cat sigmasix.yml 
+  407  vi sigmasix.yml 
+  408  cat sigma.yml 
+  409  vi sigmasix.yml 
+  410  cat sigma
+  411  cat sigma.yml 
+  412  vi sigmasix.yml 
+  413  vi 6_init_sigma.sh 
+  414  docker stack 
+  415  docker stack rm nidec
+  416  ./6_init_sigma.sh 
+  417  docker stack rm polico
+  418  cat sigmasix.yml 
+  419  cd /root/csrlean/kiss/
+  420  docker stack ls
+  421  docker stack rm monitor
+  422  docker ps
+  423  ls
+  424  cat 5_init_monitor.sh 
+  425  ./5_init_monitor.sh 
+  426  docker stack rm monitor
+  427  docker ps
+  428  docker volume
+  429  docker volume ls
+  430  docker volume rm monitor_grafana
+  431  ./5_init_monitor.sh
+  432  docker ps
+  433  exit
+  434  cd /root/csrlean/kiss/
+  435  ls
+  436  touch init_site.yml
+  437  vi init_site.yml 
+  438  cp 6_init_sigma.sh 6_init_site.sh
+  439  vi 6_init_site.sh 
+  440  ./6_init_site.sh 
+  441  docker stack rm website
+  442  vi 6_init_site.sh 
+  443  vi init_site.yml 
+  444  ./6_init_site.sh 
+  445  docker volume ls
+  446  cat monitor.yml 
+  447  docker volume
+  448  docker volume ls
+  449  docker stack ps website
+  450  ifconfig eth0
+  451  pwd
+  452  cd
+  453  pwd
+  454  ls
+  455  cd csrlean/
+  456  ls
+  457  git add .
+  458  git commit "simple swarm"
+  459  git commit "s-m imple swarm"
+  460  git commit -m "simple swarm"
+  461  git push
+  462  cd
+  463  exit
+  464  docker ps
+  465  docker node ls
+  466  cd 
+  467  cd csrlean/kiss/
+  468  ls
+  469  cd
+  470  ls
+  471  cd csrlean/kiss/
+  472  ls _l
+  473  ls -l
+  474  ls _l
+  475  ls -l
+  476  cat portainer-agent-stack.yml 
+  477  i portainer-agent-stack.yml 
+  478  vi portainer-agent-stack.yml 
+  479  vi traefik-host.yml 
+  480  exit
+  481  ls
+  482  cd
+  483  ls
+  484  cd csrlean/
+  485  ls
+  486  cd kiss/
+  487  ls
+  488  cat sigmasix.yml 
+  489  ls
+  490  pwd
+  491  cd csrlean
+  492  ls
+  493  cat 0_init_gluster.sh 
+  494  cat 1_init_server.sh 
+  495  ls
+  496  hisotry
+  497  history
+  498  ls /home/csrlean/
+  499  ls /home/leansys/
+  500  ls
+  501  cat 2_init_swarm.sh 
+  502  cd kiss
+  503  ls
+  504  cat init_site.yml 
+  505  ls
+  506  cat 1_init_server.sh 
+  507  ls
+  508  cat 4_init_portainer.sh 
+  509  hisory > /root/csrlean/toto
+  510  history > /root/csrlean/toto

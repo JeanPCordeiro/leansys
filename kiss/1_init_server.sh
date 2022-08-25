@@ -23,7 +23,7 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt update -y
 sudo apt install docker-ce -y
 sudo systemctl status docker
-sudo usermod -aG docker csrlean
+sudo usermod -aG docker leansys
 
 #
 # Set Firewall
