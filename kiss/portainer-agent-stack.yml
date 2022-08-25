@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   agent:
-    image: portainer/agent
+          image: portainer/agent:latest
     environment:
       AGENT_CLUSTER_ADDR: tasks.agent
     volumes:
@@ -17,7 +17,7 @@ services:
           - node.platform.os == linux
 
   portainer:
-    image: portainer/portainer-ce
+          image: portainer/portainer-ee:latest
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     volumes:
       - portainer_data:/data
